@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const URL = process.env.STRAPIBASEURL
 
-function adminLanding({landing}) {
+export default function Admin({landing}) {
     console.log(landing);
     return (
         <Layout>
@@ -45,5 +45,3 @@ landing:landing
         },
     };
 }
-
-export default adminLanding;

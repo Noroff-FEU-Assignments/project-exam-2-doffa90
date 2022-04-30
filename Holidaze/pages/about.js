@@ -3,6 +3,7 @@ import Layout from '../components/layout/layout';
 
 
 
+
 export default function About() {
     return  (
       <div>
@@ -12,8 +13,9 @@ export default function About() {
           <meta name='keywords' content='bergen, hotels, rooms, B&Bs, bookings, easy, lastminute, travel'/>
         </Head>
       <Layout>
-
+        
       </Layout>
   </div>
   );
 }
+

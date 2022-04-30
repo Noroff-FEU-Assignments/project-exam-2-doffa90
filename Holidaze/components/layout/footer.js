@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from "next/image"
+import scroll from "../../public/scrollTop.png"
+
 
 export default function Footer(){
     return(
@@ -20,7 +22,14 @@ export default function Footer(){
                 </Link>                                     
                     <p>Copyright &copy; 2022 Holidaze</p> 
                 <Link href='/' scroll={true}>
-                    <a className='nav'>↑</a>
+                    <a className='nav-link'>
+                        <Image
+                            src={scroll}
+                            layout="fixed"
+                            height={25}
+                            width={25}
+                        />
+                    </a>
                 </Link>          
             </nav>
         </footer>

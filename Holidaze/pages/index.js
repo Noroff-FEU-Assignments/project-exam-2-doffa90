@@ -3,9 +3,11 @@ import Layout from '../components/layout/layout';
 import Image from 'next/image';
 import heroBanner from '../public/historical-building-bergen-morning.jpg';
 import BookingDetails from '../components/form/bookingDetails';
+import Article from './posts/article';
 
+const URL = process.env.STRAPIBASEURL
 
-export default function Home() {
+export default function Home({articles}) {
     return  (
       <>
         <Head>
@@ -22,8 +24,9 @@ export default function Home() {
               height={500}
               width={414}
               layout="responsive"
-              >
-            </Image>
+              priority
+              />
+
               <div className='card-img-overlay'>
                 <h1>Visit City Of The Seven Mountains</h1>
                 <h2>Book Now!</h2>
@@ -32,33 +35,24 @@ export default function Home() {
               </div>
             </div>          
         </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-  </div>
+        {articles.data.map((article,i) => {
+        const {id,attributes} = article;
+        return (
+          <Article url={attributes.splash.data.attributes.url} body={attributes.body} title={attributes.title} id={id} key={i}/>
+        );
+      })}
       </Layout>
   </>
   );
+}
+
+
+export async function getStaticProps() {
+  const articles = await fetch(URL +'/api/articles?populate=*').then( r=> r.json());
+  return {
+      props: {
+          articles,
+          revalidate:10
+      }
+  };
 }

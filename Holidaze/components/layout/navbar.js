@@ -4,7 +4,7 @@ export default function Navbar() {
 
   return(
 
-<nav className='navbar sticky-top navbar-expand-lg navbar-light bg-light'>
+<nav className='navbar fixed-top navbar-expand-lg navbar-light bg-light'>
           <div className='container-fluid'>
             <Link href='/'>
               <a className='navbar-brand'>Holidaze</a>
@@ -16,10 +16,15 @@ export default function Navbar() {
             aria-controls="navbarToggler" 
             aria-expanded="false" 
             aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className='collapse navbar-collapse' id='navbarToggler'>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+            <li className='nav-item'>
+                <Link href='/'>
+                <a className='nav-link'>Home</a>
+                </Link>
+              </li>
               <li className='nav-item'>
                 <Link href='/hotels'>
                 <a className='nav-link'>Hotels</a>
